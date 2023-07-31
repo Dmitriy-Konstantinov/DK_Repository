@@ -21,6 +21,7 @@ while '*' in win and counter < tries:
                 iterator += 1
         else:
             print('Такой буквы нет')
+            counter += 1
 
         print(''.join(win))
     elif len(guess) > 1:
@@ -29,8 +30,7 @@ while '*' in win and counter < tries:
             break
         else:
             print('Это неправильное слово')
-
-    counter += 1
+            counter += 1
 
 if '*' in win and counter == tries:
     print('Количество попыток исчерпано. Вы проиграли.')
