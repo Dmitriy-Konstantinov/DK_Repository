@@ -4,8 +4,7 @@
 # у бібліотеці. Створіть об'єкт Library і додайте кілька книг. Виведіть список книг у бібліотеці.
 
 class Library:
-    def __init__(self):
-        self.books = []
+    books = []
 
     def add_book(self, book):
         self.books.append(book)
