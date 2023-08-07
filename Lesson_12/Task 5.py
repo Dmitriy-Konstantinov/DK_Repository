@@ -5,15 +5,20 @@ def retry(quantity):
     def decorator(func):
         def inner(*args, **kwargs):
             for x in range(quantity):
-                result = func(*args, **kwargs)
-            return result
+                try:
+                    result = func(*args, **kwargs)
+                    return result
+                except Exception:
+                    print(f'Attempt {x+1} failed.')
+            raise Exception(f'Function {func.__name__} failed.')
         return inner
     return decorator
 
 
 @retry(3)
 def greet(name):
-    print(f'Hello, {name}!')
+    raise ValueError
+    return f'Hello, {name}!'
 
 
-greet('Alex')
+print(greet('Alex'))
