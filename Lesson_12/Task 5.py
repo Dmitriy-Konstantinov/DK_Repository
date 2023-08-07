@@ -4,13 +4,16 @@
 def retry(quantity):
     def decorator(func):
         def inner(*args, **kwargs):
+            success = False
             for x in range(quantity):
                 try:
                     result = func(*args, **kwargs)
+                    success = True
                     return result
                 except Exception:
                     print(f'Attempt {x+1} failed.')
-            raise Exception(f'Function {func.__name__} failed.')
+            if not success:
+                raise Exception(f'Function {func.__name__} can not be commited.')
         return inner
     return decorator
 
